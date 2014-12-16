@@ -43,8 +43,13 @@ def flac2mp3(file, filename):
     os.system("lame " + br + " " + args + " " + wav + " " + mp3)
     os.remove(delwav)
     os.remove(tag)
-    shutil.copy2(osmp3, outdir + mp3file)
-    os.remove(osmp3)
+    try:
+        outdir
+    except NameError:
+        pass
+    else:
+        shutil.copy2(osmp3, outdir + mp3file)
+        os.remove(osmp3)
 
 def inputflac():
     print('Are you converting a single "file" or a "folder"? (Enter one of the two.)')
